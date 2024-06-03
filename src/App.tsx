@@ -1,4 +1,4 @@
-import "./题目/题目二、两数之和.ts";
+import "./题目/2. Add Two Numbers.ts";
 
 function App() {
     return <div>Hello World</div>;

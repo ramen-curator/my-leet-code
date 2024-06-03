@@ -49,10 +49,12 @@ function addTwoNumbers(
     return arrToListNode(result);
 }
 
-let result = addTwoNumbers(arrToListNode([9]), arrToListNode([9, 9]))
+let result = addTwoNumbers(arrToListNode([2, 4, 3]), arrToListNode([5, 6, 4]))
 const resultArr = []
 while (result) {
     resultArr.push(result.val)
     result = result.next
 }
+const okResult = [7, 0, 8]
 console.log(resultArr.toString())
+console.log(resultArr.toString() === okResult.toString())
