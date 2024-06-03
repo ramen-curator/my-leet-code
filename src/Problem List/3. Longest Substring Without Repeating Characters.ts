@@ -1,13 +1,34 @@
-function lengthOfLongestSubstring(s: string): number {
+import { myLog } from "../util";
 
-    return 0;
+function lengthOfLongestSubstring(sourceStr: string): number {
+    let tmpArr: string[] = []
+    let resultIdx = 0;
+    let maxCnt = 0;
+    let currentCnt = 0;
+    for (let i = 0; i < sourceStr.length; i++) {
+        const c = sourceStr[i];
+        if (tmpArr.length === 0) {
+            resultIdx = i;
+            currentCnt = 0;
+        }
+        if (!tmpArr.includes(c)) {
+            tmpArr.push(c)
+            currentCnt += 1;
+            maxCnt = Math.max(currentCnt, maxCnt)
+        } else {
+            tmpArr = [];
+            i = resultIdx;
+        }
+    }
+
+    return maxCnt;
 }
 
-const testcase = "pwwkew"
-const testOkNum = 3
+const testcase = "aab"
+const testOkNum = 2
 
 const result = lengthOfLongestSubstring(testcase)
-console.log("%cresult: " + result, "color: red")
-console.log("%cisOK? " + (testOkNum === result).toString(), "color: red")
+myLog("result: " + result)
+myLog("isOK? " + (testOkNum === result).toString())
 
 export default {}
