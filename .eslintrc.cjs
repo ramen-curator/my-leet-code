@@ -18,5 +18,6 @@ module.exports = {
         "prefer-const": "off",
         "no-empty": "off",
         "@typescript-eslint/no-explicit-any": "off",
+        "no-extra-semi": "off",
     },
 };
