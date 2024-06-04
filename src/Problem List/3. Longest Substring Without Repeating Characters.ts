@@ -1,5 +1,7 @@
 import { myLog } from "../util";
 
+/* 判题说我的解法不够快 */
+
 function lengthOfLongestSubstring(sourceStr: string): number {
     let tmpArr: string[] = []
     let resultIdx = 0;
