@@ -11,6 +11,8 @@
  * }
  */
 
+import { myLog } from "../util"
+
 class ListNode {
     val: number
     next: ListNode | null
@@ -56,7 +58,7 @@ while (result) {
     result = result.next
 }
 const okResult = [7, 0, 8]
-console.log(resultArr.toString())
-console.log(resultArr.toString() === okResult.toString())
+myLog(resultArr.toString())
+myLog(resultArr.toString() === okResult.toString())
 
 export default {}
