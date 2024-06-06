@@ -1,4 +1,4 @@
-import "./Problem List/5. Longest Palindromic Substring.ts";
+import "./Problem List/6. Zigzag Conversion.ts";
 
 function App() {
     return <div>Hello World</div>;
