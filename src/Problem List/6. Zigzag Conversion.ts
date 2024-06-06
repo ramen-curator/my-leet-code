@@ -3,6 +3,7 @@ import { myLog } from "../util";
 /* Tag: Medium */
 
 /* 判题说我的解法不够快 */
+/* 感受：对于指针的控制水平 */
 
 function convert(str: string, numRows: number): string {
     let resultArr: string[][] = [];

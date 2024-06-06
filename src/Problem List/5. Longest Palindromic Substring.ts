@@ -2,6 +2,8 @@ import { myLog } from "../util";
 
 /* Tag: Medium */
 
+/* 思路： 像是一滴水落入，往两边慢慢走开。以此判断回文。然后遍历一下，这题就打通关了 */
+
 function longestPalindrome(str: string): string {
     let maxArr: string[] = [];
     for (let idx = 0; idx < str.length; idx++) {
