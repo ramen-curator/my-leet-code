@@ -2,6 +2,8 @@ import { myLog } from "../util";
 
 /* Tag: Medium */
 
+/* 判题说我的解法不够快 */
+
 function convert(str: string, numRows: number): string {
     let resultArr: string[][] = [];
     let j = 0;
