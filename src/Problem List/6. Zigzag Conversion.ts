@@ -40,17 +40,11 @@ function convert(str: string, numRows: number): string {
                 isLine = true;
                 k++;
             } else {
-                // j===0
+                // j===0 ，此时的numRows一定是2。
+                isLine = true;
                 if (resultArr[k] === undefined) resultArr[k] = [];
                 resultArr[k].push(s);
                 j++;
-                isLine = true;
-                if (j === numRows) {
-                    isLine = false;
-                    j--;
-                    j--;
-                    k++;
-                }
             }
         }
     }
