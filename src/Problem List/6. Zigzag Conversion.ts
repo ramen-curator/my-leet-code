@@ -10,8 +10,7 @@ function convert(str: string, numRows: number): string {
     let k = 0;
     let isLine = true;
 
-    for (let i = 0; i < str.length; i++) {
-        const s = str[i];
+    for (const s of str) {
         if (isLine) {
             if (j < numRows) {
                 if (resultArr[k] === undefined) resultArr[k] = [];
