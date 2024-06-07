@@ -3,6 +3,12 @@ import { myLog } from "../util";
 /* Tag: Medium */
 
 /* 特殊条件是，不可以存储64位的整数，也就是能存的值，只能在[-2的31次方, 2的31次方-1]之间 */
+/* 我的思路是
+  -  将整数，从末尾一个一个掏出来，push进数组，形成reverse 
+  -  再将数组转化成数字，从最大的数位开始转。
+  -  如果最大的比限制的数大，就是超过，就返回0。
+  -  否则就正常转。
+  */
 
 function converNumToReverseAbsArr(x: number) {
 	if (x === 0) return [0];
