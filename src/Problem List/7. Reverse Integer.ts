@@ -2,25 +2,22 @@ import { myLog } from "../util";
 
 /* Tag: Medium */
 
-/* 特殊条件是，不可以存操作64位的整数，也就是[-2的31次方, 2的31次方-1]之间 */
+/* 特殊条件是，不可以存储64位的整数，也就是能存的值，只能在[-2的31次方, 2的31次方-1]之间 */
 
 function converNumToReverseAbsArr(x: number) {
+	if (x === 0) return [0];
 	const k = x < 0 ? -1 : 1;
 	const isNegative = k === -1;
 	const arr = [];
 	let isFirst = true;
-	if (x === 0) {
-		arr.push(x);
-	} else {
-		while (isNegative ? x < 0 : x > 0) {
-			const n = (x % 10) * k;
-			if ((isFirst && n !== 0) || !isFirst) {
-				isFirst = false;
-				arr.push(n);
-			}
-			isNegative ? (x += n) : (x -= n);
-			x /= 10;
+	while (isNegative ? x < 0 : x > 0) {
+		const n = (x % 10) * k;
+		if ((isFirst && n !== 0) || !isFirst) {
+			isFirst = false;
+			arr.push(n);
 		}
+		isNegative ? (x += n) : (x -= n);
+		x /= 10;
 	}
 	return arr;
 }
