@@ -3,7 +3,14 @@ import { myLog } from "../util";
 /* Tag: Medium */
 
 function reverse(x: number): number {
-	return 0;
+	const s = [...x.toString()].reverse();
+	if (s.includes("-")) {
+		s.pop();
+		s.unshift("-");
+	}
+	const r = parseInt(s.join(""));
+	if (r > Math.pow(2, 31) - 1 || r < -Math.pow(2, 31)) return 0;
+	return r;
 }
 
 const testcaseInput = 123;
