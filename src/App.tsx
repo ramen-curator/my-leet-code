@@ -1,7 +1,7 @@
-import "./Problem List/6. Zigzag Conversion.ts";
+import "./Problem List/7. Reverse Integer.ts";
 
 function App() {
-    return <div>Hello World</div>;
+	return <div>Hello World</div>;
 }
 
 export default App;
