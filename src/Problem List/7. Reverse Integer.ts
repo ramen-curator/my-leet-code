@@ -31,7 +31,7 @@ function converNumToReverseAbsArr(x: number) {
 }
 
 function reverse(x: number): number {
-	const positiveLimitStr = (Math.pow(2, 31) - 1).toString();
+	const positiveLimitStr = ((-Math.pow(2, 31) + 1) * -1).toString();
 	const negativeLimitStr = (-Math.pow(2, 31)).toString();
 	const k = x < 0 ? -1 : 1;
 	const isNegative = k === -1;
