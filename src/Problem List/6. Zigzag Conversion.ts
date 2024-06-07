@@ -3,62 +3,58 @@ import { myLog } from "../util";
 /* Tag: Medium */
 
 /* 判题说我的解法不够快 */
-/* 感受：对于指针的控制水平 */
+/* 感受：
+ - 2024.06.06 对于指针的控制水平
+ - 2024.06.07 光标的移动
+ */
 
 function convert(str: string, numRows: number): string {
-	let resultArr: string[][] = [];
-	let j = 0;
-	let k = 0;
-	let isLine = true;
+	const arr: string[][] = [];
+	let x = 0;
+	let y = 0;
+	let isDown = true;
 
 	for (const s of str) {
-		if (isLine) {
-			if (j < numRows) {
-				if (resultArr[k] === undefined) resultArr[k] = [];
-				resultArr[k].push(s);
-				j++;
-				if (j === numRows) {
-					isLine = false;
-					j--;
-					j--;
-					k++;
-				}
-			} else {
-				console.error("something error");
-			}
-		} else {
-			if (j > 0) {
-				resultArr.push(new Array(numRows).fill(""));
-				resultArr[k][j] = s;
-				j--;
-				k++;
-				if (j === 0) {
-					isLine = true;
-				}
-			} else if (j === -1) {
-				resultArr.push(new Array(numRows).fill(""));
-				j++;
-				resultArr[k][j] = s;
-				isLine = true;
-				k++;
-			} else {
-				// j===0 ，此时的numRows一定是2。
-				isLine = true;
-				if (resultArr[k] === undefined) resultArr[k] = [];
-				resultArr[k].push(s);
-				j++;
-			}
-		}
+		if (!arr[y]) arr[y] = [];
+		arr[y][x] = s;
+		updateNextPoint();
 	}
 
-	let resultStr = "";
-	for (let i = 0; i < numRows; i++) {
-		for (let j = 0; j < resultArr.length; j++) {
-			resultStr += resultArr[j][i] ?? "";
+	return sumStr(arr);
+
+	function updateNextPoint() {
+		if (numRows === 1) {
+			x++;
+			return;
+		}
+		if (isDown) {
+			y++;
+		} else {
+			x++;
+			y--;
+		}
+		if (y === 0) {
+			isDown = true;
+		}
+		if (y === numRows) {
+			x++;
+			y -= 2;
+			isDown = numRows === 2;
 		}
 	}
-	return resultStr;
+	function sumStr(arr: string[][]) {
+		let r = "";
+		arr.forEach((a) => {
+			a.forEach((char) => {
+				if (char !== undefined) {
+					r += char;
+				}
+			});
+		});
+		return r;
+	}
 }
+
 // const testcaseInput = "PAYPALISHIRING";
 // const testcaseInput1 = 3;
 // const testcaseOKResult = "PAHNAPLSIIGYIR";
