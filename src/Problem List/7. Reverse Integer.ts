@@ -9,6 +9,8 @@ import { myLog } from "../util";
   -  如果最大的比限制的数大，就是超过，就返回0。
   -  否则就正常转。
   */
+/* 比较细节的地方，就是正负数不一样、前导0的处理、是否超出最大值的比较处理 */
+/* 我的做法：测试驱动开发，靠题库的测试用例来发现细节上的不足，然后打断点修补bug */
 
 function converNumToReverseAbsArr(x: number) {
 	if (x === 0) return [0];
