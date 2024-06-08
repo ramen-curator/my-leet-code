@@ -14,7 +14,11 @@ import { myLog, SignedInt32Limit } from "../util";
 这种题目打起来，感觉比平时开发的级别更低级。就像高级语言与低级语言那样。
 
 这里感觉可以封装成一个class。一个arr和k的class。封装成常用函数。名字该起什么好呢？
-SignedInt32Limit
+SignedInt32Limit。
+
+封装后速度，判题速度变慢了。
+为了增加性能的话，就会牺牲一定的可读性吧。也就是变得难读。
+现在我觉得这代码相当好读。
  */
 
 function myAtoi(inputStr: string): number {
