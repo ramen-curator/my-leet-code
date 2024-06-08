@@ -1,12 +1,14 @@
-# LeetCode 解题题集
+# LeetCode Problem Collection
+
+[中文](README.zh.md)
 
 ## FAQ
 
-### 为什么要整个 Vite？
+### Why use Vite?
 
-因为方便打断点。我是前端，对浏览器的断点比 VSCode 的断点工具熟。而且省得配置 tsconfig.json、task.json 之类的东西。
+Because it’s convenient for setting breakpoints. As a front-end developer, I am more familiar with browser breakpoints than VSCode's debugging tools. Additionally, it saves the trouble of configuring files like `tsconfig.json` and `task.json`.
 
-### 我怎么写题目的？
+### How do I write problems?
 
-要写题目的时候，就在`main`文件`import`一下对应的题目。于是题目代码就可以被运行了。  
-当然，运行之前肯定是`npm run dev`，如果缺少依赖，那就`npm i`，不解释。
+When writing a problem, simply `import` the corresponding problem in the `main` file. This allows the problem code to be executed.  
+Of course, before running it, you should use `npm run dev`, and if dependencies are missing, then run `npm i`. No further explanation needed.
