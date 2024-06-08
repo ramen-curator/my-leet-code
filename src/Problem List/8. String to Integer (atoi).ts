@@ -1,4 +1,4 @@
-import { myLog } from "../util";
+import { myLog, SignedInt32Limit } from "../util";
 
 /* Tag: Medium */
 
@@ -12,11 +12,13 @@ import { myLog } from "../util";
 这一道题打了1小时。
 
 这种题目打起来，感觉比平时开发的级别更低级。就像高级语言与低级语言那样。
+
+这里感觉可以封装成一个class。一个arr和k的class。封装成常用函数。名字该起什么好呢？
+SignedInt32Limit
  */
 
 function myAtoi(inputStr: string): number {
-	let arr: number[] = [];
-	let k = 1;
+	const si = new SignedInt32Limit();
 	let isFirstChecking = true;
 	let isSignAssigned = false;
 	let haveLeadingZero = false;
@@ -47,7 +49,7 @@ function myAtoi(inputStr: string): number {
 					if (haveLeadingZero) {
 						return 0;
 					}
-					c === "+" ? (k *= 1) : (k *= -1);
+					c === "+" ? (si.sign *= 1) : (si.sign *= -1);
 					isSignAssigned = true;
 					continue;
 				}
@@ -64,44 +66,16 @@ function myAtoi(inputStr: string): number {
 					isFirstChecking = false;
 				}
 			}
-			arr.push(parseInt(c));
+			si.digits.push(parseInt(c));
 			continue;
 		}
 		throw new Error("Situations not considered: " + c);
 	}
 
-	// check boundary
-	const positiveLimit = (-Math.pow(2, 30) * 2 + 1) * -1;
-	const negativeLimit = -Math.pow(2, 30) * 2;
-	const positiveLimitStr = positiveLimit.toString();
-	const negativeLimitStr = negativeLimit.toString();
-	const isNegative = k === -1;
-	const isOutOfBoundary = (() => {
-		const limitLength = isNegative
-			? negativeLimitStr.length - 1
-			: positiveLimitStr.length;
-		if (arr.length > limitLength) return true;
-		if (arr.length < limitLength) return false;
-		for (let i = 0; i < arr.length; i++) {
-			const v1 = arr[i];
-			const v2 = parseInt(
-				isNegative ? negativeLimitStr[i + 1] : positiveLimitStr[i]
-			);
-			if (v1 > v2) return true;
-			if (v1 === v2) continue;
-			return false;
-		}
-	})();
-	if (isOutOfBoundary) return isNegative ? negativeLimit : positiveLimit;
-
-	// parse to int
-	let resultValue = 0;
-	for (let i = 0; i < arr.length; i++) {
-		const v = arr[i];
-		resultValue += v * Math.pow(10, arr.length - 1 - i);
+	if (si.checkOutOfBounds()) {
+		return si.sign === -1 ? si.NEGATIVE_LIMIT : si.POSITIVE_LIMIT;
 	}
-
-	return resultValue * k;
+	return si.toInteger();
 }
 
 // const testcaseInput = "42";
