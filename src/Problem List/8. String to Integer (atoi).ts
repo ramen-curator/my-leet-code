@@ -18,10 +18,22 @@ SignedInt32Limit
  */
 
 function myAtoi(inputStr: string): number {
+	const si = constructorSignedInt32Limit(inputStr);
+	if (si.checkOutOfBounds()) {
+		return si.sign === -1 ? si.NEGATIVE_LIMIT : si.POSITIVE_LIMIT;
+	}
+	return si.toInteger();
+}
+
+function constructorSignedInt32Limit(inputStr: string) {
 	const si = new SignedInt32Limit();
 	let isFirstChecking = true;
 	let isSignAssigned = false;
 	let haveLeadingZero = false;
+	const handleWrongCondition = () => {
+		si.digits = [0];
+		return si;
+	};
 	// build arr
 	for (const c of inputStr) {
 		if (c === " ") {
@@ -36,7 +48,7 @@ function myAtoi(inputStr: string): number {
 		}
 		if (c.match(/[A-z.]/) !== null) {
 			if (isFirstChecking) {
-				return 0;
+				return handleWrongCondition();
 			} else {
 				break;
 			}
@@ -44,10 +56,10 @@ function myAtoi(inputStr: string): number {
 		if (c.match(/[+-]/) !== null) {
 			if (isFirstChecking) {
 				if (isSignAssigned) {
-					return 0;
+					return handleWrongCondition();
 				} else {
 					if (haveLeadingZero) {
-						return 0;
+						return handleWrongCondition();
 					}
 					c === "+" ? (si.sign *= 1) : (si.sign *= -1);
 					isSignAssigned = true;
@@ -71,11 +83,7 @@ function myAtoi(inputStr: string): number {
 		}
 		throw new Error("Situations not considered: " + c);
 	}
-
-	if (si.checkOutOfBounds()) {
-		return si.sign === -1 ? si.NEGATIVE_LIMIT : si.POSITIVE_LIMIT;
-	}
-	return si.toInteger();
+	return si;
 }
 
 // const testcaseInput = "42";
