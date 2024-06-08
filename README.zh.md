@@ -1,6 +1,6 @@
 # LeetCode 解题题集
 
-[English](README.md)
+[English](README.md) | 中文
 
 ## FAQ
 
