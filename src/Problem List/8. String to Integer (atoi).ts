@@ -38,7 +38,7 @@ function constructorSignedInt32Limit(inputStr: string) {
 		si.digits = [0];
 		return si;
 	};
-	// build arr
+	// build arr & set sign
 	for (const c of inputStr) {
 		if (c === " ") {
 			if (isFirstChecking) {
