@@ -1,4 +1,4 @@
-import "./Problem List/7. Reverse Integer.ts";
+import "./Problem List/8. String to Integer (atoi).ts";
 
 function App() {
 	return <div>Hello World</div>;
