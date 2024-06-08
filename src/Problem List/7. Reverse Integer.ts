@@ -35,15 +35,15 @@ function reverse(x: number): number {
 	const negativeLimitStr = (-Math.pow(2, 31)).toString();
 	const k = x < 0 ? -1 : 1;
 	const isNegative = k === -1;
-	const arr = converNumToReverseAbsArr(x);
+	const reversedAbsArr = converNumToReverseAbsArr(x);
 
 	let isDangerous = isNegative
-		? arr.length >= negativeLimitStr.length - 1
-		: arr.length >= positiveLimitStr.length;
-	let r = 0;
-	for (let i = 0; i < arr.length; i++) {
-		const n = arr[i];
-		const idx = arr.length - 1 - i;
+		? reversedAbsArr.length === negativeLimitStr.length - 1 // The length will not exceed the limit
+		: reversedAbsArr.length === positiveLimitStr.length;
+	let resultValue = 0;
+	for (let i = 0; i < reversedAbsArr.length; i++) {
+		const v = reversedAbsArr[i];
+		const idx = reversedAbsArr.length - 1 - i;
 		if (isDangerous) {
 			const targetChar = (() => {
 				return isNegative
@@ -51,14 +51,14 @@ function reverse(x: number): number {
 					: positiveLimitStr[positiveLimitStr.length - 1 - idx];
 			})();
 			const targetInt = parseInt(targetChar);
-			if (n > targetInt) return 0;
-			if (n !== targetInt) {
+			if (v > targetInt) return 0;
+			if (v !== targetInt) {
 				isDangerous = false;
 			}
 		}
-		r += k * n * Math.pow(10, idx);
+		resultValue += k * v * Math.pow(10, idx);
 	}
-	return r;
+	return resultValue;
 }
 
 // const testcaseInput = 123;
