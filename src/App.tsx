@@ -1,4 +1,4 @@
-import "./Problem List/8. String to Integer (atoi).ts";
+import "./Problem List/9. Palindrome Number.ts";
 
 function App() {
 	return <div>Hello World</div>;
