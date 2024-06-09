@@ -3,6 +3,12 @@ import { myLog } from "../util";
 /* Tag: Easy */
 
 function isPalindrome(x: number): boolean {
+	const a = [...x.toString()];
+	while (a.length > 1) {
+		const v1 = a.pop();
+		const v2 = a.shift();
+		if (v1 !== v2) return false;
+	}
 	return true;
 }
 
