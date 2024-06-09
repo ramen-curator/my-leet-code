@@ -2,7 +2,7 @@ import { myLog } from "../util";
 
 /* Tag: Hard */
 
-function isMatch(str: string, pattern: string): boolean {
+function isMatch1(str: string, pattern: string): boolean {
 	let i = 0;
 	let j = 0;
 	interface IfObj {
@@ -44,7 +44,7 @@ function isMatch(str: string, pattern: string): boolean {
 		i++;
 		j++;
 	};
-	while (i !== str.length || j !== pattern.length) {
+	while (i !== str.length) {
 		const p = pattern[j];
 		const s = str[i];
 		if (p === ".") {
@@ -95,16 +95,17 @@ function isMatch(str: string, pattern: string): boolean {
 		// 找出接下来的字符串中，跟p1符合的东西。记住编号，也就是i+x，这个x就是'*'的可能值。
 		// build ifObj
 		const ifObj: IfObj = { i, j, n: [] };
-		let i1 = i;
-		let leftStr = (str ?? "").slice(i1);
-		let x: number;
-		do {
-			x = [...leftStr].findIndex((item) => item === p1 || p1 === ".");
-			if (x !== -1) {
-				ifObj.n.push(x - i1);
-				leftStr = str.slice(x + 1);
+		let leftStr = (str ?? "").slice(i);
+		[...leftStr].forEach((v, i) => {
+			if (p1 === ".") {
+				ifObj.n.push(i);
+				return;
 			}
-		} while (x !== -1);
+			if (v === p1) {
+				ifObj.n.push(i);
+				return;
+			}
+		});
 
 		if (ifObj.n.length === 0) {
 			if (checkReallyFalse()) return false;
@@ -117,10 +118,24 @@ function isMatch(str: string, pattern: string): boolean {
 
 	return true;
 }
+function isMatch(str: string, pattern: string): boolean {
+	let ps = pattern;
+	while (ps.length !== 0) {
+		const result = isMatch1(str, ps);
+		if (result) return true;
+		let psa = [...ps];
+		psa.shift();
+		ps = psa.join("");
+	}
+	return false;
+}
 
-const testcaseInput = "aa";
-const testcaseInput1 = "a";
-const testcaseOKResult = false;
+// const testcaseInput = "aa";
+// const testcaseInput1 = "a";
+// 竟然要考虑子串？
+const testcaseInput = "aab";
+const testcaseInput1 = "c*a*b";
+const testcaseOKResult = true;
 const result = isMatch(testcaseInput, testcaseInput1);
 myLog("result: " + result);
 myLog("isOK? " + (testcaseOKResult === result).toString());
