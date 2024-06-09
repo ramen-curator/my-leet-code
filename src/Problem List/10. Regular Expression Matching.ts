@@ -12,7 +12,28 @@ import { myLog } from "../util";
  */
 
 function isMatch(str: string, pattern: string): boolean {
-	return false;
+	let i = 0;
+	let j = 0;
+	while (i !== str.length) {
+		const p = pattern[j];
+		const p1 = pattern[j + 1];
+		// 这里已经考虑了p===undefined、p1===undefined的情况
+		if (p1 !== "*") {
+			if (p === "." || p === str[i]) {
+				i++;
+				j++;
+				continue;
+			} else {
+				return false;
+			}
+		}
+		// p1 === "*"
+		while (str[i] === p) {
+			i++;
+		}
+		j++;
+	}
+	return true;
 }
 
 // const testcaseInput = "aa";
@@ -21,9 +42,12 @@ function isMatch(str: string, pattern: string): boolean {
 // const testcaseInput = "aab";
 // const testcaseInput1 = "c*a*b";
 // const testcaseOKResult = true;
-const testcaseInput = "mississippi";
-const testcaseInput1 = "mis*is*p*.";
-const testcaseOKResult = false;
+// const testcaseInput = "mississippi";
+// const testcaseInput1 = "mis*is*p*.";
+// const testcaseOKResult = false;
+const testcaseInput = "ab";
+const testcaseInput1 = ".*";
+const testcaseOKResult = true;
 const result = isMatch(testcaseInput, testcaseInput1);
 myLog("result: " + result);
 myLog("isOK? " + (testcaseOKResult === result).toString());
